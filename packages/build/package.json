@@ -1,5 +1,5 @@
 {
-  "name": "@hono/vite-build",
+  "name": "hono-vite-build-d8d",
   "description": "Vite plugin to build your Hono app",
   "version": "1.6.2",
   "types": "dist/index.d.ts",
