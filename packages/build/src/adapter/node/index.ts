@@ -28,7 +28,13 @@ const nodeBuildPlugin = (pluginOptions?: NodeBuildOptions): Plugin => {
           async (appName) => {
             // eslint-disable-next-line quotes
             let code = "import { serve } from '@hono/node-server'\n"
-            code += `serve({ fetch: ${appName}.fetch, port: ${port.toString()} })`
+            code += `
+            const httpServer = serve({ fetch: ${appName}.fetch, port: ${port.toString()} })
+            const [, app] = Object.entries(modules)[0];
+            if('websocket' in app){
+              app.websocket(httpServer)
+            }
+            `;
             return code
           },
         ],
